@@ -12,7 +12,7 @@ public class PrototypeTest {
 
     @Test
     void prototypeBeanFin() {
-        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(PrototypeTest.class);
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(PrototypeBean.class);
 
         System.out.println("find prototypeBean1");
         PrototypeBean prototypeBean1 = ac.getBean(PrototypeBean.class);
@@ -23,10 +23,12 @@ public class PrototypeTest {
         System.out.println("prototypeBean1 = " + prototypeBean1);
         System.out.println("prototypeBean2 = " + prototypeBean2);
 
-        Assertions.assertThat(prototypeBean1).isSameAs(prototypeBean2);
+        Assertions.assertThat(prototypeBean1).isNotSameAs(prototypeBean2);
+
+        ac.close();
     }
 
-    @Scope("portotype")
+    @Scope("prototype")
     static class PrototypeBean {
         @PostConstruct
         public void init() {

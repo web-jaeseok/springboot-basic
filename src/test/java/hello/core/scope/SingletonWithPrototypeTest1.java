@@ -39,8 +39,7 @@ public class SingletonWithPrototypeTest1 {
 
         public int logic() {
             prototypeBean.addCount();
-            int count = prototypeBean.getCount();
-            return count;
+            return prototypeBean.getCount();
         }
     }
 
